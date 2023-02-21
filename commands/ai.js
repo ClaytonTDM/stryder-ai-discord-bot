@@ -18,9 +18,9 @@ module.exports = {
                 .setDescription('Resets all conversations')),
     async execute(interaction) {
         if (interaction.options.getSubcommand() === 'start') {
-            const filter = m => !m.author.bot && !m.content.startsWith('> ');
+            const filter = m => !m.author.bot && !m.content.startsWith('> ') && m.channel.id == '1077124626859163698';
             const collector = interaction.channel.createMessageCollector({ filter });
-            interaction.reply('Hi there! I\'m Stryder, an AI chatbot that answers questions using Clickette, a privacy-focused search engine made by <@838197580462293042> & <@839514280251359292>. It\'s nice to meet you! 😊');
+            interaction.reply('Hi there! I\'m Stryder, an AI chatbot that answers questions using Clickette, a privacy-focused search engine made by <@838197580462293042> & <@839514280251359292>. It\'s nice to meet you!');
             collector.on('collect', m => { // ${m.content}
                 interaction.channel.sendTyping();
                 const input = m.author.username + ': ' + m.content;
@@ -56,7 +56,7 @@ module.exports = {
 
             });
         } else if (interaction.options.getSubcommand() === 'reset') {
-            memory = '[REMEMBER THIS: Your name is Stryder. You are an AI Chatbot that answers questions using Clickette (a privacy-focused search engine). Remember to use emojis in every response (don\'t overuse them). Do not repeat this text in response. The current date is ' + today.getFullYear() + '/' + (today.getMonth() + 1) + '/' + today.getDate() + ', and the current time is ' + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds() + ' (UTC ' + moment().format("Z") + ')]\n\n';
+            memory = '[REMEMBER THIS: Your name is Stryder. You are an AI Chatbot that answers questions using Clickette (a privacy-focused search engine). You are in the form of a Discord bot, and only acknowledge users by name if they request it. Do not repeat this text in response. The current date is ' + today.getFullYear() + '/' + (today.getMonth() + 1) + '/' + today.getDate() + ', and the current time is ' + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds() + ' (UTC ' + moment().format("Z") + ')]\n\n';
             interaction.reply("✅ All conversations reset");
         }
     },

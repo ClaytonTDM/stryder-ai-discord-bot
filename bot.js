@@ -1,6 +1,6 @@
 const fs = require('node:fs');
 const path = require('node:path');
-const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
+const { Client, Collection, Events, ActivityType, GatewayIntentBits } = require('discord.js');
 const { token } = require('./config.json');
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });
 client.commands = new Collection();
@@ -13,6 +13,7 @@ for (const file of commandFiles) {
 }
 
 client.once(Events.ClientReady, () => {
+    client.user.setActivity('/ai start', { type: ActivityType.Listening });
     console.log('Ready!');
 });
 
