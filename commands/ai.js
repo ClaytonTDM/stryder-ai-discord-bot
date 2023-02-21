@@ -50,7 +50,7 @@ module.exports = {
 
                         setTimeout(() => {
                             memory += output + '\n\n';
-                            return interaction.channel.send(output);
+                            m.reply(output);
                         }, 100);
                     })
 
