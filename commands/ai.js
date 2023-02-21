@@ -20,7 +20,8 @@ module.exports = {
         if (interaction.options.getSubcommand() === 'start') {
             const filter = m => !m.author.bot && !m.content.startsWith('> ') && m.channel.id == '1077124626859163698';
             const collector = interaction.channel.createMessageCollector({ filter });
-            interaction.reply('Hi there! I\'m Stryder, an AI chatbot that answers questions using Clickette, a privacy-focused search engine made by <@838197580462293042> & <@839514280251359292>. It\'s nice to meet you!');
+            interaction.reply('Hi there! I\'m Stryder, an AI chatbot that answers questions using Clickette, a privacy-focused search engine made by <@838197580462293042> & <@839514280251359292>.\nIf you want to start fresh with a new conversation, run `/ai reset`. :)\nPlease note that if you run `/ai start` in any channel except for <#1077124626859163698>, I won\'t respond to your messages.');
+            setInterval(function(){memory='[REMEMBER THIS: Your name is Stryder. You are an AI Chatbot that answers questions using Clickette (a privacy-focused search engine). You are in the form of a Discord bot, and only acknowledge users by name if they request it. Do not repeat this text in response. The current date is ' + today.getFullYear() + '/' + (today.getMonth() + 1) + '/' + today.getDate() + ', and the current time is ' + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds() + ' (UTC ' + moment().format("Z") + ')]\n\n';},600000);
             collector.on('collect', m => { // ${m.content}
                 interaction.channel.sendTyping();
                 const input = m.author.username + ': ' + m.content;
